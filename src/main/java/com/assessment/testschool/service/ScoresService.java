@@ -70,10 +70,20 @@ public class ScoresService {
                     termSubjectList.add(s);
                 }
             }
+            calculateAverage(termSubjectList);
             return StandardResponse.sendHttpResponse(true, "Operation was successful", termSubjectList, "200");
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return StandardResponse.sendHttpResponse(false, "Could not complete operation");
         }
+    }
+
+    public double calculateAverage(List<Scores> scores){
+        double x = 0;
+        int n = scores.size();
+        for(Scores s : scores){
+            x = x + s.getScore();
+        }
+        return x/n;
     }
 }
